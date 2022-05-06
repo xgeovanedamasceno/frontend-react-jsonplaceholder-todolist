@@ -2,6 +2,9 @@
 
 1. Think and Planning
 2. Create prototype
+3. Set Development Enviroment
+    - npx create-react-app my-app
+    - install eslint
 3. Development
     - Create components
         - Header
@@ -18,8 +21,16 @@
     - Fetch API
     - Set routes
 4. Tests
+    - Usually each test should import:
+        - '@testing-library/jest-dom'
+        - { render, screen } from '@testing-library/react'
 5. Style and Design
 6. Deploy
+
+# Notes
+
+- How to reset or unstage on git?
+    - git reset
 
 # Getting Started with Create React App
 
