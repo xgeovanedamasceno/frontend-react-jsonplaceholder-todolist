@@ -9,6 +9,8 @@
         - Subtitle
         - Main
         - Button
+        - User
+        - Tasks
     - Create pages
         - Home Page (users)
         - User Page (todolist)
