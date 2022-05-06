@@ -7,7 +7,9 @@ describe("Title", () => {
         render(<Title></Title>)
     })
 
-    it('should render a h1 element', () => {
-        const h1El = screen.getByRole('heading', { level: 1 });
+    it('should render an h1 element', () => {
+        const h1El = screen.getByRole('heading', { level: 1})
+
+        expect(h1El).toBeInTheDocument();
     });
 });
