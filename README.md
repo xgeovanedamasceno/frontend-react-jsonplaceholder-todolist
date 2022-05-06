@@ -1,3 +1,23 @@
+# Development steps
+
+1. Think and Planning
+2. Create prototype
+3. Development
+    - Create components
+        - Header
+        - Title
+        - Subtitle
+        - Main
+        - Button
+    - Create pages
+        - Home Page (users)
+        - User Page (todolist)
+    - Fetch API
+    - Set routes
+4. Tests
+5. Style and Design
+6. Deploy
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
