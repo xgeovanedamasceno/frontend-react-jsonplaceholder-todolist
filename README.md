@@ -14,6 +14,7 @@
     - Create pages
         - Home Page (users)
         - User Page (todolist)
+        - Not Found Page
     - Fetch API
     - Set routes
 4. Tests
