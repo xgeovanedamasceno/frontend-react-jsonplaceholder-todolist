@@ -149,8 +149,7 @@ export default reportWebVitals;
 ### 9. propType "title" is not required, but has no corresponding defaultProps declaration.
 
 before:
-
-````
+```
 import React from 'react';
 
 function Home({ title }) {
@@ -162,7 +161,7 @@ function Home({ title }) {
 }
 
 export default Home;
-|```
+```
 
 after:
 ```
@@ -186,15 +185,15 @@ Home.propTypes = {
 export default Home;
 ```
 
-## Libraries used
+### Libraries used
 
 - eslint
 - prop-types
 - react-router-dom@6
 
-## errors:
+### errors:
 
-1.
+#### 1.
 ```
  console.error
     Warning: Failed prop type: Invalid prop `children` of type `array` supplied to `Container`, expected a single ReactElement.
@@ -202,7 +201,7 @@ export default Home;
         at Home (/home/xgeo/Desktop/dev-projects/frontend-react-jsonplaceholder-todolist/src/pages/Home/index.jsx:9:17)
 ```
 
-  #### How was fixed:
+  ##### How was fixed:
 
     before:
     ```
@@ -238,7 +237,7 @@ export default Home;
     };
     export default Container;
     ```
-2.
+#### 2.
 ```
 console.error
     Warning: Failed prop type: Invalid prop `children[1]` of type `array` supplied to `Main`, expected a single ReactElement.
@@ -246,28 +245,34 @@ console.error
         at Home (/home/xgeo/Desktop/dev-projects/frontend-react-jsonplaceholder-todolist/src/pages/Home/index.jsx:11:17)
 ```
 
-### How was fixed?
-######-> wasn't...
-```
-/* eslint-disable react/prop-types */
-import React from 'react';
+   ##### How was fixed?
+      ##### -> wasn't...
+      ```
+      /* eslint-disable react/prop-types */
+      import React from 'react';
 
-function Main({ children }) {
-  return (
-    <main>{ children }</main>
-  );
-}
+      function Main({ children }) {
+        return (
+          <main>{ children }</main>
+        );
+      }
 
-export default Main;
-```
+      export default Main;
+      ```
 
 
-## Doubts
+### Doubts
 
 - jest vs testing-library
 - fix or refactor
 - how to mock a component for tests
 - how to mock a custom hook for tests
+
+
+
+
+
+
 
 
 # Getting Started with Create React App
