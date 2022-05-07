@@ -3,34 +3,69 @@
 1. Think and Planning
 2. Create prototype
 3. Set Development Enviroment
-    - npx create-react-app my-app
-    - install eslint
-3. Development
-    - Create components
-        - Header
-        - Title
-        - Subtitle
-        - Main
-        - Button
-        - User
-        - Tasks
-    - Create pages
-        - Home Page (users)
-        - User Page (todolist)
-        - Not Found Page
-    - Fetch API
-    - Set routes
-4. Tests
-    - Usually each test should import:
-        - '@testing-library/jest-dom'
-        - { render, screen } from '@testing-library/react'
-5. Style and Design
-6. Deploy
+   - npx create-react-app my-app
+   - install eslint
+4. Development
+   - Create components
+     - Header
+     - Title
+     - Subtitle
+     - Main
+     - Button
+     - User
+     - Tasks
+   - Create pages
+     - Home Page (users)
+     - User Page (todolist)
+     - Not Found Page
+   - Fetch API
+   - Set routes
+5. Tests
+   - Usually each test should import:
+     - '@testing-library/jest-dom'
+     - { render, screen } from '@testing-library/react'
+6. Style and Design
+7. Deploy
 
 # Notes
 
 - How to reset or unstage on git?
-    - git reset
+  - git reset
+  - git reset HEAD~1 hard
+
+# ESLint Rules
+
+1. A control must be associated with a text label.
+
+2. 'React' must be in scope when using JSX
+
+3. JSX not allowed in files with extension '.js'
+
+before (rules 1, 2 e 3):
+
+```
+function Button() {
+  return (
+    <button></button>
+  );
+}
+
+export default Button;
+```
+
+after:
+
+```
+import React from 'react';
+
+function Button() {
+  return (
+    <button>Button Text</button>
+  );
+}
+
+export default Button;
+```
 
 # Getting Started with Create React App
 
