@@ -1,9 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function Container() {
+function Container({ children }) {
   return (
-    <div />
+    <div>{ children }</div>
   );
 }
 
+Container.propTypes = {
+  children: PropTypes.element.isRequired,
+};
 export default Container;
