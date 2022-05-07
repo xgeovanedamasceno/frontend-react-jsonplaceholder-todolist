@@ -193,10 +193,13 @@ export default Home;
 
 ## errors:
 
+1.
+```
  console.error
     Warning: Failed prop type: Invalid prop `children` of type `array` supplied to `Container`, expected a single ReactElement.
         at Container (/home/xgeo/Desktop/dev-projects/frontend-react-jsonplaceholder-todolist/src/components/Container/index.jsx:4:22)
         at Home (/home/xgeo/Desktop/dev-projects/frontend-react-jsonplaceholder-todolist/src/pages/Home/index.jsx:9:17)
+```
 
   #### How was fixed:
 
@@ -234,6 +237,29 @@ export default Home;
     };
     export default Container;
     ```
+2.
+```
+console.error
+    Warning: Failed prop type: Invalid prop `children[1]` of type `array` supplied to `Main`, expected a single ReactElement.
+        at Main (/home/xgeo/Desktop/dev-projects/frontend-react-jsonplaceholder-todolist/src/components/Main/index.jsx:4:17)
+        at Home (/home/xgeo/Desktop/dev-projects/frontend-react-jsonplaceholder-todolist/src/pages/Home/index.jsx:11:17)
+```
+
+### How was fixed?
+######-> wasn't...
+```
+/* eslint-disable react/prop-types */
+import React from 'react';
+
+function Main({ children }) {
+  return (
+    <main>{ children }</main>
+  );
+}
+
+export default Main;
+```
+
 
 ## Doubts
 
