@@ -22,10 +22,15 @@ function UserProfile({ title, subtitle }) {
       .then((data) => setUser(data));
   }
 
+  function reduceTodoSize(data) {
+    const reducedTodoList = data.slice(0, 10);
+    setTodoList(reducedTodoList);
+  }
+
   function fetchTodoList() {
     fetch(`https://jsonplaceholder.typicode.com/todos?userid=${params.id}`)
       .then((response) => response.json())
-      .then((data) => setTodoList(data));
+      .then((data) => reduceTodoSize(data));
   }
 
   useEffect(() => {
@@ -42,12 +47,19 @@ function UserProfile({ title, subtitle }) {
     );
   }
 
+  /* function checkStatusOfTodoItems(status) {
+    if (status) {
+      return 'complete';
+    }
+    return 'incomplete';
+  } */
+
   function renderTodoList() {
     return (
       todoList?.map((itemList, index) => (
         <li key={`${itemList?.id}${itemList.id + index}`}>
           <p>{itemList.title}</p>
-          <p>{`${itemList.completed}`}</p>
+          <p>{ itemList.completed }</p>
         </li>
       ))
     );
