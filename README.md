@@ -189,6 +189,7 @@ export default Home;
 
 - eslint
 - prop-types
+- react-router-dom@6
 
 ## errors:
 
