@@ -238,6 +238,10 @@ export default Home;
 
 - jest vs testing-library
 - fix or refactor
+- how to mock a component for tests
+- how to mock a custom hook for tests
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
