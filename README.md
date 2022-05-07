@@ -1,6 +1,6 @@
-# Development steps
+## Development steps
 
-1. Think and Planning
+1. Think and Plan
 2. Create prototype
 3. Set Development Enviroment
    - npx create-react-app my-app
@@ -14,6 +14,8 @@
      - Button
      - User
      - Tasks
+     - Container (add after plan)
+     - Footer (add after plan)
    - Create pages
      - Home Page (users)
      - User Page (todolist)
@@ -27,19 +29,19 @@
 6. Style and Design
 7. Deploy
 
-# Notes
+## Notes
 
 - How to reset or unstage on git?
   - git reset
   - git reset HEAD~1 hard
 
-# ESLint Rules
+## ESLint Rules
 
-## 1. A control must be associated with a text label.
+### 1. A control must be associated with a text label.
 
-## 2. 'React' must be in scope when using JSX
+### 2. 'React' must be in scope when using JSX
 
-## 3. JSX not allowed in files with extension '.js'
+### 3. JSX not allowed in files with extension '.js'
 
 before (rules 1, 2 and 3):
 
@@ -67,7 +69,7 @@ function Button() {
 export default Button;
 ```
 
-## 4. Headings must have content and the content must be accessible by a screen reader.
+### 4. Headings must have content and the content must be accessible by a screen reader.
 
 before:
 
@@ -98,9 +100,9 @@ function Subtitle() {
 export default Subtitle;
 ```
 
-## 5. Expected parentheses around arrow function argument.
+### 5. Expected parentheses around arrow function argument.
 
-## 6. Expected a line break after this opening brace.
+### 6. Expected a line break after this opening brace.
 
 before (rules 5 and 6):
 
@@ -140,11 +142,11 @@ const reportWebVitals = (onPerfEntry) => {
 export default reportWebVitals;
 ```
 
-## 7. 'children' is missing in props validation
+### 7. 'children' is missing in props validation
 
-## 8. 'title' is missing in props validation
+### 8. 'title' is missing in props validation
 
-## 9. propType "title" is not required, but has no corresponding defaultProps declaration.
+### 9. propType "title" is not required, but has no corresponding defaultProps declaration.
 
 before:
 
@@ -183,7 +185,6 @@ Home.propTypes = {
 
 export default Home;
 ```
-
 
 ## Libraries used
 
