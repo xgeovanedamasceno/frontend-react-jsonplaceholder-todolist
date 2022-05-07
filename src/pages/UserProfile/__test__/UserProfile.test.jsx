@@ -6,7 +6,7 @@ import UserProfile from '..';
 
 describe('UserProfile', () => {
   beforeEach(() => {
-    render(<UserProfile />);
+    render(<UserProfile title="Text" subtitle="Text" />);
   });
 
   it('should render the header component', () => {
