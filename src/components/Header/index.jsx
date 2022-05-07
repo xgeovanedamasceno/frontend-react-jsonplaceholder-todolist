@@ -1,9 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function Header() {
+function Header({ children }) {
   return (
-    <header>Header Text</header>
+    <header data-testid="header">{ children }</header>
   );
 }
+
+Header.propTypes = {
+  children: PropTypes.element.isRequired,
+};
 
 export default Header;
