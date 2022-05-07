@@ -55,6 +55,7 @@ function UserProfile({ title, subtitle }) {
         <li key={`${itemList?.id}${itemList.id + index}`}>
           <p>
             {itemList.title}
+            <Button label="Finish Task" />
           </p>
           <p>
             Status:
