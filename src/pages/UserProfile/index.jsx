@@ -23,7 +23,7 @@ function UserProfile({ title, subtitle }) {
   }
 
   function reduceTodoSize(data) {
-    const reducedTodoList = data.slice(0, 10);
+    const reducedTodoList = data.slice(0, 5);
     setTodoList(reducedTodoList);
   }
 
@@ -36,6 +36,7 @@ function UserProfile({ title, subtitle }) {
   useEffect(() => {
     fetchUser();
     fetchTodoList();
+    setTodoList(reduceTodoSize);
   }, []);
 
   function renderUser() {
@@ -47,19 +48,16 @@ function UserProfile({ title, subtitle }) {
     );
   }
 
-  /* function checkStatusOfTodoItems(status) {
-    if (status) {
-      return 'complete';
-    }
-    return 'incomplete';
-  } */
-
   function renderTodoList() {
     return (
       todoList?.map((itemList, index) => (
         <li key={`${itemList?.id}${itemList.id + index}`}>
-          <p>{itemList.title}</p>
-          <p>{ itemList.completed }</p>
+          <p>
+            {itemList.title}
+          </p>
+          <p>
+            Status:
+          </p>
         </li>
       ))
     );
