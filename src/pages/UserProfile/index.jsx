@@ -9,6 +9,7 @@ import Footer from '../../components/Footer';
 import Subtitle from '../../components/Subtitle';
 import User from '../../components/User';
 import TodoList from '../../components/TodoList';
+import Button from '../../components/Button';
 
 function UserProfile({ title, subtitle }) {
   const [user, setUser] = useState(null);
@@ -72,6 +73,7 @@ function UserProfile({ title, subtitle }) {
         <Subtitle subtitle={subtitle} />
         { renderUser() }
         <TodoList>
+          <Button label="Add New Task" />
           { renderTodoList() }
         </TodoList>
       </Main>
