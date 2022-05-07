@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Header from '../../components/Header';
 import Title from '../../components/Title';
@@ -9,6 +9,25 @@ import Footer from '../../components/Footer';
 import Subtitle from '../../components/Subtitle';
 
 function Home({ title, subtitle }) {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((response) => response.json())
+      .then((data) => setUsers(data));
+  }, []);
+
+  function renderUsers() {
+    return (
+      users.map((user, index) => (
+        <User key={`${user.id}${user.id + index}`}>
+          <h3>{user.name}</h3>
+          <p>{user.email}</p>
+        </User>
+      ))
+    );
+  }
+
   return (
     <Container>
       <Header>
@@ -16,8 +35,7 @@ function Home({ title, subtitle }) {
       </Header>
       <Main>
         <Subtitle subtitle={subtitle} />
-        <User />
-        <User />
+        { renderUsers() }
       </Main>
       <Footer>
         <Subtitle subtitle={subtitle} />
