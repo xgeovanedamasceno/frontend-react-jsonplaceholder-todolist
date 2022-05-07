@@ -7,7 +7,12 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={
+            <Home title="TODO USERS APP" subtitle="A React Application" />
+        }
+        />
       </Routes>
     </BrowserRouter>
   );
