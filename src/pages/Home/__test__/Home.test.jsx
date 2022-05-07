@@ -14,4 +14,16 @@ describe('Home', () => {
 
     expect(headerEl).toBeInTheDocument();
   });
+
+  it('should render the title component', () => {
+    const titleEl = screen.getByRole('heading', { level: 1 });
+
+    expect(titleEl).toBeInTheDocument();
+  });
+
+  it('should render the main component', () => {
+    const mainEl = screen.getByRole('main');
+
+    expect(mainEl).toBeInTheDocument();
+  });
 });
