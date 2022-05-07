@@ -6,7 +6,7 @@ import Subtitle from '..';
 
 describe('Subtitle', () => {
   beforeEach(() => {
-    render(<Subtitle />);
+    render(<Subtitle subtitle="Text" />);
   });
 
   it('should render an h2 element', () => {
