@@ -2,15 +2,12 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { screen, render } from '@testing-library/react';
-import TaskList from '..';
-import FakeComponent from '../../__mocks__/FakeComponent';
+import TodoList from '..';
 
 describe('TodoList', () => {
   beforeEach(() => {
     render(
-      <TaskList>
-        <FakeComponent />
-      </TaskList>,
+      <TodoList />,
     );
   });
 
