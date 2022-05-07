@@ -12,7 +12,7 @@ import TodoList from '../../components/TodoList';
 import Button from '../../components/Button';
 
 function UserProfile({ title, subtitle }) {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
   const [todoList, setTodoList] = useState([]);
 
   const params = useParams();
@@ -23,13 +23,18 @@ function UserProfile({ title, subtitle }) {
       .then((data) => setUser(data));
   }
 
+  function saveOnLocalStorage(data) {
+    if (data[0] !== undefined) localStorage.setItem(data[0]?.userId, JSON.stringify(data));
+  }
+
   function reduceTodoSize(data) {
     const reducedTodoList = data.slice(0, 5);
     setTodoList(reducedTodoList);
+    saveOnLocalStorage(reducedTodoList);
   }
 
   function fetchTodoList() {
-    fetch(`https://jsonplaceholder.typicode.com/todos?userid=${params.id}`)
+    fetch(`https://jsonplaceholder.typicode.com/todos?userId=${params.id}`)
       .then((response) => response.json())
       .then((data) => reduceTodoSize(data));
   }
