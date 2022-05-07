@@ -35,13 +35,13 @@
 
 # ESLint Rules
 
-1. A control must be associated with a text label.
+## 1. A control must be associated with a text label.
 
-2. 'React' must be in scope when using JSX
+## 2. 'React' must be in scope when using JSX
 
-3. JSX not allowed in files with extension '.js'
+## 3. JSX not allowed in files with extension '.js'
 
-before (rules 1, 2 e 3):
+before (rules 1, 2 and 3):
 
 ```
 function Button() {
@@ -67,7 +67,7 @@ function Button() {
 export default Button;
 ```
 
-4. Headings must have content and the content must be accessible by a screen reader.
+## 4. Headings must have content and the content must be accessible by a screen reader.
 
 before:
 
@@ -96,6 +96,48 @@ function Subtitle() {
 }
 
 export default Subtitle;
+```
+
+## 5. Expected parentheses around arrow function argument.
+
+## 6. Expected a line break after this opening brace.
+
+before (rules 5 and 6):
+
+```
+const reportWebVitals = onPerfEntry => {
+  if (onPerfEntry && onPerfEntry instanceof Function) {
+    import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+      getCLS(onPerfEntry);
+      getFID(onPerfEntry);
+      getFCP(onPerfEntry);
+      getLCP(onPerfEntry);
+      getTTFB(onPerfEntry);
+    });
+  }
+};
+
+export default reportWebVitals;
+```
+
+after:
+
+```
+const reportWebVitals = (onPerfEntry) => {
+  if (onPerfEntry && onPerfEntry instanceof Function) {
+    import('web-vitals').then(({
+      getCLS, getFID, getFCP, getLCP, getTTFB,
+    }) => {
+      getCLS(onPerfEntry);
+      getFID(onPerfEntry);
+      getFCP(onPerfEntry);
+      getLCP(onPerfEntry);
+      getTTFB(onPerfEntry);
+    });
+  }
+};
+
+export default reportWebVitals;
 ```
 
 # Getting Started with Create React App
