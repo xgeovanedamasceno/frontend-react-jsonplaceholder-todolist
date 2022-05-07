@@ -140,6 +140,56 @@ const reportWebVitals = (onPerfEntry) => {
 export default reportWebVitals;
 ```
 
+## 7. 'children' is missing in props validation
+
+## 8. 'title' is missing in props validation
+
+## 9. propType "title" is not required, but has no corresponding defaultProps declaration.
+
+before:
+
+````
+import React from 'react';
+
+function Home({ title }) {
+  return (
+    <Header>
+      <Title>{ title }</Title>
+    </Header>
+  );
+}
+
+export default Home;
+|```
+
+after:
+```
+import React from 'react';
+import PropTypes from 'prop-types';
+import Header from '../../components/Header';
+import Title from '../../components/Title';
+
+function Home({ title }) {
+  return (
+    <Header>
+      <Title>{ title }</Title>
+    </Header>
+  );
+}
+
+Home.propTypes = {
+  title: PropTypes.string.isRequired,
+};
+
+export default Home;
+```
+
+
+## Libraries used
+
+- eslint
+- prop-types
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -210,3 +260,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+````
