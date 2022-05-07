@@ -6,7 +6,7 @@ import Title from '..';
 
 describe('Title', () => {
   beforeEach(() => {
-    render(<Title />);
+    render(<Title title="Text" />);
   });
 
   it('should render an h1 element', () => {
