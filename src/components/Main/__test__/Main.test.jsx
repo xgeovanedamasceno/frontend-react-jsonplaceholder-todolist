@@ -3,7 +3,7 @@ import React from 'react';
 import '@testing-library/jest-dom';
 import { screen, render } from '@testing-library/react';
 import Main from '..';
-import FakeComponet from '../__mocks__/FakeComponent';
+import FakeComponet from '../../__mocks__/FakeComponent';
 
 // jest.mock('../src/components/Main');
 
