@@ -67,6 +67,37 @@ function Button() {
 export default Button;
 ```
 
+4. Headings must have content and the content must be accessible by a screen reader.
+
+before:
+
+```
+import React from 'react';
+
+function Subtitle() {
+  return (
+    <h2 />
+  );
+}
+
+export default Subtitle;
+
+```
+
+after:
+
+```
+import React from 'react';
+
+function Subtitle() {
+  return (
+    <h2>Text here</h2>
+  );
+}
+
+export default Subtitle;
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
