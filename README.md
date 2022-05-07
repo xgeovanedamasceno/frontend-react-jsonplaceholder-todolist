@@ -190,6 +190,54 @@ export default Home;
 - eslint
 - prop-types
 
+## errors:
+
+ console.error
+    Warning: Failed prop type: Invalid prop `children` of type `array` supplied to `Container`, expected a single ReactElement.
+        at Container (/home/xgeo/Desktop/dev-projects/frontend-react-jsonplaceholder-todolist/src/components/Container/index.jsx:4:22)
+        at Home (/home/xgeo/Desktop/dev-projects/frontend-react-jsonplaceholder-todolist/src/pages/Home/index.jsx:9:17)
+
+  #### How was fixed:
+
+    before:
+    ```
+    import React from 'react';
+    import PropTypes from 'prop-types';
+
+    function Main({ children }) {
+      return (
+        <main>{ children }</main>
+      );
+    }
+
+    Main.propTypes = {
+      children: PropTypes.element.isRequired,
+    };
+
+    export default Main;
+    ```
+
+    after:
+    ```
+    import React from 'react';
+    import PropTypes from 'prop-types';
+
+    function Container({ children }) {
+      return (
+        <div>{ children }</div>
+      );
+    }
+
+    Container.propTypes = {
+      children: PropTypes.arrayOf(PropTypes.element).isRequired,
+    };
+    export default Container;
+    ```
+
+## Doubts
+
+- jest vs testing-library
+- fix or refactor
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
