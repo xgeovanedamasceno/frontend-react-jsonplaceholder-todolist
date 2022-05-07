@@ -1,6 +1,6 @@
-# Development steps
+## Development steps
 
-1. Think and Planning
+1. Think and Plan
 2. Create prototype
 3. Set Development Enviroment
    - npx create-react-app my-app
@@ -14,6 +14,8 @@
      - Button
      - User
      - Tasks
+     - Container (add after plan)
+     - Footer (add after plan)
    - Create pages
      - Home Page (users)
      - User Page (todolist)
@@ -27,19 +29,19 @@
 6. Style and Design
 7. Deploy
 
-# Notes
+## Notes
 
 - How to reset or unstage on git?
   - git reset
   - git reset HEAD~1 hard
 
-# ESLint Rules
+## ESLint Rules
 
-## 1. A control must be associated with a text label.
+### 1. A control must be associated with a text label.
 
-## 2. 'React' must be in scope when using JSX
+### 2. 'React' must be in scope when using JSX
 
-## 3. JSX not allowed in files with extension '.js'
+### 3. JSX not allowed in files with extension '.js'
 
 before (rules 1, 2 and 3):
 
@@ -67,7 +69,7 @@ function Button() {
 export default Button;
 ```
 
-## 4. Headings must have content and the content must be accessible by a screen reader.
+### 4. Headings must have content and the content must be accessible by a screen reader.
 
 before:
 
@@ -98,9 +100,9 @@ function Subtitle() {
 export default Subtitle;
 ```
 
-## 5. Expected parentheses around arrow function argument.
+### 5. Expected parentheses around arrow function argument.
 
-## 6. Expected a line break after this opening brace.
+### 6. Expected a line break after this opening brace.
 
 before (rules 5 and 6):
 
@@ -139,6 +141,134 @@ const reportWebVitals = (onPerfEntry) => {
 
 export default reportWebVitals;
 ```
+
+### 7. 'children' is missing in props validation
+
+### 8. 'title' is missing in props validation
+
+### 9. propType "title" is not required, but has no corresponding defaultProps declaration.
+
+before:
+
+````
+import React from 'react';
+
+function Home({ title }) {
+  return (
+    <Header>
+      <Title>{ title }</Title>
+    </Header>
+  );
+}
+
+export default Home;
+|```
+
+after:
+```
+import React from 'react';
+import PropTypes from 'prop-types';
+import Header from '../../components/Header';
+import Title from '../../components/Title';
+
+function Home({ title }) {
+  return (
+    <Header>
+      <Title>{ title }</Title>
+    </Header>
+  );
+}
+
+Home.propTypes = {
+  title: PropTypes.string.isRequired,
+};
+
+export default Home;
+```
+
+## Libraries used
+
+- eslint
+- prop-types
+- react-router-dom@6
+
+## errors:
+
+1.
+```
+ console.error
+    Warning: Failed prop type: Invalid prop `children` of type `array` supplied to `Container`, expected a single ReactElement.
+        at Container (/home/xgeo/Desktop/dev-projects/frontend-react-jsonplaceholder-todolist/src/components/Container/index.jsx:4:22)
+        at Home (/home/xgeo/Desktop/dev-projects/frontend-react-jsonplaceholder-todolist/src/pages/Home/index.jsx:9:17)
+```
+
+  #### How was fixed:
+
+    before:
+    ```
+    import React from 'react';
+    import PropTypes from 'prop-types';
+
+    function Main({ children }) {
+      return (
+        <main>{ children }</main>
+      );
+    }
+
+    Main.propTypes = {
+      children: PropTypes.element.isRequired,
+    };
+
+    export default Main;
+    ```
+
+    after:
+    ```
+    import React from 'react';
+    import PropTypes from 'prop-types';
+
+    function Container({ children }) {
+      return (
+        <div>{ children }</div>
+      );
+    }
+
+    Container.propTypes = {
+      children: PropTypes.arrayOf(PropTypes.element).isRequired,
+    };
+    export default Container;
+    ```
+2.
+```
+console.error
+    Warning: Failed prop type: Invalid prop `children[1]` of type `array` supplied to `Main`, expected a single ReactElement.
+        at Main (/home/xgeo/Desktop/dev-projects/frontend-react-jsonplaceholder-todolist/src/components/Main/index.jsx:4:17)
+        at Home (/home/xgeo/Desktop/dev-projects/frontend-react-jsonplaceholder-todolist/src/pages/Home/index.jsx:11:17)
+```
+
+### How was fixed?
+######-> wasn't...
+```
+/* eslint-disable react/prop-types */
+import React from 'react';
+
+function Main({ children }) {
+  return (
+    <main>{ children }</main>
+  );
+}
+
+export default Main;
+```
+
+
+## Doubts
+
+- jest vs testing-library
+- fix or refactor
+- how to mock a component for tests
+- how to mock a custom hook for tests
+
 
 # Getting Started with Create React App
 
@@ -210,3 +340,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+````
