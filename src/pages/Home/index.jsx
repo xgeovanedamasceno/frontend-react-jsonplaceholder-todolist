@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Header from '../../components/Header';
 import Title from '../../components/Title';
 import Container from '../../components/Container';
@@ -21,7 +22,9 @@ function Home({ title, subtitle }) {
     return (
       users.map((user, index) => (
         <User key={`${user.id}${user.id + index}`}>
-          <h3>{user.name}</h3>
+          <Link to={`user/${user.id}`}>
+            <h3>{user.name}</h3>
+          </Link>
           <p>{user.email}</p>
         </User>
       ))
