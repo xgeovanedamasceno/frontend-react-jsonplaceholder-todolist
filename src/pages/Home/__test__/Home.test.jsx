@@ -6,19 +6,7 @@ import Home from '..';
 
 describe('Home', () => {
   beforeEach(() => {
-    render(<Home title="Text" subtitle="Text" />);
-  });
-
-  it('should render the header component', () => {
-    const headerEl = screen.getByTestId('header');
-
-    expect(headerEl).toBeInTheDocument();
-  });
-
-  it('should render the title component', () => {
-    const h1El = screen.getByRole('heading', { level: 1 });
-
-    expect(h1El).toBeInTheDocument();
+    render(<Home subtitle="Name Page" />);
   });
 
   it('should render the main component', () => {
@@ -27,15 +15,9 @@ describe('Home', () => {
     expect(mainEl).toBeInTheDocument();
   });
 
-  it('should render the footer component', () => {
-    const footerEl = screen.getByTestId('footer');
-
-    expect(footerEl).toBeInTheDocument();
-  });
-
   it('should render the subtitle component', () => {
-    const h2El = screen.getAllByRole('heading', { level: 2 });
+    const h2El = screen.getByText(/name page/i);
 
-    expect(h2El.length).toBe(2);
+    expect(h2El).toBeVisible();
   });
 });
