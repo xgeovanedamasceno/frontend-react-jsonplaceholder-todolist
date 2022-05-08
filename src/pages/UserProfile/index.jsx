@@ -59,8 +59,14 @@ function UserProfile({ title, subtitle }) {
   }
 
   function renderStatusItemTodo(status) {
-    if (status) return 'completed';
-    return 'incomplet';
+    switch (status) {
+      case true:
+        return 'completed';
+      case 'pending':
+        return status;
+      default:
+        return 'incomplet';
+    }
   }
 
   function addTodoItem() {
@@ -72,7 +78,7 @@ function UserProfile({ title, subtitle }) {
       title: todoItem,
       completed: false,
     };
-    listStoraged.push(taskItem);
+    listStoraged.unshift(taskItem);
     setTodoList(listStoraged);
     saveOnLocalStorage(listStoraged);
   }
@@ -110,6 +116,11 @@ function UserProfile({ title, subtitle }) {
     updateStatusTodoItem(itemId, true);
   }
 
+  function pendingTask(event) {
+    const itemId = +event.target.id;
+    updateStatusTodoItem(itemId, 'pending');
+  }
+
   function renderInputForm() {
     return (
       <form>
@@ -130,7 +141,9 @@ function UserProfile({ title, subtitle }) {
         <li key={`${itemList?.id}${itemList.id + index}`}>
           <p>
             {itemList.title}
+            <button type="button" onClick={pendingTask} id={itemList.id}>Mark as Pending</button>
             <button type="button" onClick={finishTask} id={itemList.id}>Finish Task</button>
+
           </p>
           <p>
             Status:
