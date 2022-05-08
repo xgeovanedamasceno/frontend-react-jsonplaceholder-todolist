@@ -10,4 +10,4 @@ function PageName({ subtitle }) {
 PageName.propTypes = {
   subtitle: PropTypes.string.isRequired,
 };
-export default Subtitle;
+export default PageName;
