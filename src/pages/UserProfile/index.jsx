@@ -14,6 +14,7 @@ import Button from '../../components/Button';
 function UserProfile({ title, subtitle }) {
   const [user, setUser] = useState({});
   const [todoList, setTodoList] = useState([]);
+  const [todoItem, setTodoItem] = useState('');
 
   const params = useParams();
 
@@ -70,6 +71,36 @@ function UserProfile({ title, subtitle }) {
     );
   }
 
+  function updateTodoList() {
+    const savedTodoList = JSON.parse(localStorage.getItem(user?.id));
+    const task = {
+      userId: user.id,
+      title: todoItem,
+      completed: false,
+    };
+    savedTodoList.push(task);
+    setTodoList(savedTodoList);
+    saveOnLocalStorage(savedTodoList);
+  }
+
+  /* function renderUpdatedTodoList() {
+    renderTodoList();
+  } */
+
+  function renderInputForm() {
+    return (
+      <form>
+        <input
+          type="text"
+          placeholder="Add new task here"
+          value={todoItem}
+          onChange={(event) => setTodoItem(event.target.value)}
+        />
+        <button onClick={updateTodoList} type="button">ADD</button>
+      </form>
+    );
+  }
+
   return (
     <Container>
       <Header>
@@ -79,6 +110,7 @@ function UserProfile({ title, subtitle }) {
         <Subtitle subtitle={subtitle} />
         { renderUser() }
         <TodoList>
+          { renderInputForm() }
           <Button label="Add New Task" />
           { renderTodoList() }
         </TodoList>
