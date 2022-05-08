@@ -9,7 +9,6 @@ import Footer from '../../components/Footer';
 import Subtitle from '../../components/Subtitle';
 import User from '../../components/User';
 import TodoList from '../../components/TodoList';
-import Button from '../../components/Button';
 
 function UserProfile({ title, subtitle }) {
   const [user, setUser] = useState({});
@@ -61,7 +60,7 @@ function UserProfile({ title, subtitle }) {
         <li key={`${itemList?.id}${itemList.id + index}`}>
           <p>
             {itemList.title}
-            <Button label="Finish Task" />
+            <button type="button">Finish Task</button>
           </p>
           <p>
             Status:
@@ -82,10 +81,6 @@ function UserProfile({ title, subtitle }) {
     setTodoList(savedTodoList);
     saveOnLocalStorage(savedTodoList);
   }
-
-  /* function renderUpdatedTodoList() {
-    renderTodoList();
-  } */
 
   function renderInputForm() {
     return (
@@ -111,7 +106,6 @@ function UserProfile({ title, subtitle }) {
         { renderUser() }
         <TodoList>
           { renderInputForm() }
-          <Button label="Add New Task" />
           { renderTodoList() }
         </TodoList>
       </Main>
