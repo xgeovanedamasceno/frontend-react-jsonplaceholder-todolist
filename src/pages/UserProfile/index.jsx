@@ -10,7 +10,6 @@ import Subtitle from '../../components/Subtitle';
 import User from '../../components/User';
 import TodoList from '../../components/TodoList';
 import Button from '../../components/Button';
-import Input from '../../components/Input/Input';
 
 function UserProfile({ title, subtitle }) {
   const [user, setUser] = useState({});
@@ -80,7 +79,6 @@ function UserProfile({ title, subtitle }) {
         <Subtitle subtitle={subtitle} />
         { renderUser() }
         <TodoList>
-          <Input placeholderText="Type new tasks here" />
           <Button label="Add New Task" />
           { renderTodoList() }
         </TodoList>
