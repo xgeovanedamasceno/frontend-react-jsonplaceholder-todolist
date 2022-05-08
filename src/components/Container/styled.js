@@ -17,6 +17,10 @@ a {
     color: #1A1B1C;
 }
 
+a:hover {
+    color: #F5CF00;
+}
+
 font-family: monospace;
 `;
 
