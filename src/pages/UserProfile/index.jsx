@@ -155,8 +155,8 @@ function UserProfile({ pageName }) {
     <Page>
       <PageName title={pageName} />
       { renderUser() }
+      { renderInputForm() }
       <TodoList>
-        { renderInputForm() }
         { renderTodoList() }
       </TodoList>
     </Page>
