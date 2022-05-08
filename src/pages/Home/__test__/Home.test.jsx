@@ -16,8 +16,8 @@ describe('Home', () => {
   });
 
   it('should render the subtitle component', () => {
-    const h2El = screen.getByText(/name page/i);
+    const namePage = screen.getByText(/name page/i);
 
-    expect(h2El).toBeVisible();
+    expect(namePage).toBeVisible();
   });
 });
