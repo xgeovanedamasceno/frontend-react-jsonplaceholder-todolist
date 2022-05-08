@@ -54,6 +54,11 @@ function UserProfile({ title, subtitle }) {
     );
   }
 
+  function renderStatusItemTodo(status) {
+    if (status) return 'completed';
+    return 'incomplet';
+  }
+
   function renderTodoList() {
     return (
       todoList?.map((itemList, index) => (
@@ -64,6 +69,8 @@ function UserProfile({ title, subtitle }) {
           </p>
           <p>
             Status:
+            {' '}
+            {renderStatusItemTodo(itemList.completed)}
           </p>
         </li>
       ))
