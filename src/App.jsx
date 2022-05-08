@@ -15,7 +15,7 @@ function App() {
     <BrowserRouter>
       <Container>
         <Header>
-          <SiteName title="Header Title" />
+          <SiteName title="Todo List App" />
         </Header>
         <Routes>
           <Route
@@ -32,7 +32,7 @@ function App() {
           />
         </Routes>
         <Footer>
-          <PageName title="Footer Subtitle App" />
+          <PageName title="A React Application Developed By xgeovanedamasceno" />
         </Footer>
       </Container>
     </BrowserRouter>

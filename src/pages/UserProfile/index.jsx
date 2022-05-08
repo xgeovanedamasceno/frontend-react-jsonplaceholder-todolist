@@ -135,17 +135,20 @@ function UserProfile({ pageName }) {
     return (
       todoList?.map((itemList, index) => (
         <li key={`${itemList?.id}${itemList.id + index}`}>
-          <p>
-            {itemList.title}
+          <section id="task-description">
+            <p>
+              {itemList.title}
+            </p>
+            <p>
+              status:
+              {' '}
+              {renderStatusItemTodo(itemList.completed)}
+            </p>
+          </section>
+          <section id="buttons-sec">
             <button type="button" onClick={pendingTask} id={itemList.id}>Mark as Pending</button>
             <button type="button" onClick={finishTask} id={itemList.id}>Finish Task</button>
-
-          </p>
-          <p>
-            Status:
-            {' '}
-            {renderStatusItemTodo(itemList.completed)}
-          </p>
+          </section>
         </li>
       ))
     );
@@ -155,8 +158,8 @@ function UserProfile({ pageName }) {
     <Page>
       <PageName title={pageName} />
       { renderUser() }
+      { renderInputForm() }
       <TodoList>
-        { renderInputForm() }
         { renderTodoList() }
       </TodoList>
     </Page>
