@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Main from '../../components/Main';
+import Page from '../../components/Page';
 import User from '../../components/User';
 import Subtitle from '../../components/Subtitle';
 
@@ -28,10 +28,10 @@ function Home({ subtitle }) {
   }
 
   return (
-    <Main>
+    <Page>
       <Subtitle subtitle={subtitle} />
       { renderUsers() }
-    </Main>
+    </Page>
   );
 }
 

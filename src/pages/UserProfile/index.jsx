@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Main from '../../components/Main';
+import Page from '../../components/Page';
 import Subtitle from '../../components/Subtitle';
 import User from '../../components/User';
 import TodoList from '../../components/TodoList';
@@ -152,14 +152,14 @@ function UserProfile({ subtitle }) {
   }
 
   return (
-    <Main>
+    <Page>
       <Subtitle subtitle={subtitle} />
       { renderUser() }
       <TodoList>
         { renderInputForm() }
         { renderTodoList() }
       </TodoList>
-    </Main>
+    </Page>
   );
 }
 
