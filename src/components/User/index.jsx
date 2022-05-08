@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import UserStyle from './styled';
 
 function User({ children }) {
   return (
-    <section>{ children }</section>
+    <UserStyle>
+      <section>{ children }</section>
+    </UserStyle>
   );
 }
 
