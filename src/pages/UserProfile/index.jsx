@@ -27,6 +27,10 @@ function UserProfile({ title, subtitle }) {
     if (data[0] !== undefined) localStorage.setItem(data[0]?.userId, JSON.stringify(data));
   }
 
+  function readLocalStorage() {
+    return JSON.parse(localStorage.getItem(user.id));
+  }
+
   function reduceTodoSize(data) {
     const reducedTodoList = data.slice(0, 5);
     setTodoList(reducedTodoList);
@@ -59,34 +63,51 @@ function UserProfile({ title, subtitle }) {
     return 'incomplet';
   }
 
-  function renderTodoList() {
-    return (
-      todoList?.map((itemList, index) => (
-        <li key={`${itemList?.id}${itemList.id + index}`}>
-          <p>
-            {itemList.title}
-            <button type="button">Finish Task</button>
-          </p>
-          <p>
-            Status:
-            {' '}
-            {renderStatusItemTodo(itemList.completed)}
-          </p>
-        </li>
-      ))
-    );
-  }
-
-  function updateTodoList() {
-    const savedTodoList = JSON.parse(localStorage.getItem(user?.id));
-    const task = {
+  function addTodoItem() {
+    const listStoraged = readLocalStorage();
+    const lastId = listStoraged.at(-1);
+    const taskItem = {
       userId: user.id,
+      id: lastId.id + 1,
       title: todoItem,
       completed: false,
     };
-    savedTodoList.push(task);
-    setTodoList(savedTodoList);
-    saveOnLocalStorage(savedTodoList);
+    listStoraged.push(taskItem);
+    setTodoList(listStoraged);
+    saveOnLocalStorage(listStoraged);
+  }
+
+  function getIdTodoItem(itemID) {
+    const listStoraged = readLocalStorage();
+    let indexItem;
+
+    listStoraged.forEach((itemTask, index) => {
+      if (itemTask.id === itemID) {
+        indexItem = index;
+      }
+      return null;
+    });
+    return indexItem;
+  }
+
+  function updateStatusTodoItem(itemId, status) {
+    const listStoraged = readLocalStorage();
+    const indexTodoItem = getIdTodoItem(itemId);
+    const itemTodoTask = listStoraged.at(indexTodoItem);
+    const taskItem = {
+      userId: itemTodoTask.userId,
+      id: itemTodoTask.id,
+      title: itemTodoTask.title,
+      completed: status,
+    };
+    listStoraged[indexTodoItem] = taskItem;
+    setTodoList(listStoraged);
+    saveOnLocalStorage(listStoraged);
+  }
+
+  function finishTask(event) {
+    const itemId = +event.target.id;
+    updateStatusTodoItem(itemId, true);
   }
 
   function renderInputForm() {
@@ -98,8 +119,26 @@ function UserProfile({ title, subtitle }) {
           value={todoItem}
           onChange={(event) => setTodoItem(event.target.value)}
         />
-        <button onClick={updateTodoList} type="button">ADD</button>
+        <button onClick={addTodoItem} type="button">ADD</button>
       </form>
+    );
+  }
+
+  function renderTodoList() {
+    return (
+      todoList?.map((itemList, index) => (
+        <li key={`${itemList?.id}${itemList.id + index}`}>
+          <p>
+            {itemList.title}
+            <button type="button" onClick={finishTask} id={itemList.id}>Finish Task</button>
+          </p>
+          <p>
+            Status:
+            {' '}
+            {renderStatusItemTodo(itemList.completed)}
+          </p>
+        </li>
+      ))
     );
   }
 
