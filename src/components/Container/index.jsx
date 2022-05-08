@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ContainerStyle from './styled';
 
 function Container({ children }) {
   return (
-    <div>{ children }</div>
+    <ContainerStyle>
+      <div>{ children }</div>
+    </ContainerStyle>
   );
 }
 
