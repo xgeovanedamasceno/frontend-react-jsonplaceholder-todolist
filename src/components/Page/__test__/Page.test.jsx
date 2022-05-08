@@ -2,18 +2,18 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { screen, render } from '@testing-library/react';
-import Main from '..';
+import Page from '..';
 import FakeComponet from '../../__mocks__/FakeComponent';
 
 // jest.mock('../src/components/Main');
 
-describe('Main', () => {
+describe('Page', () => {
   beforeEach(() => {
     render(
-      <Main>
+      <Page>
         <FakeComponet />
         <FakeComponet />
-      </Main>,
+      </Page>,
     );
   });
 

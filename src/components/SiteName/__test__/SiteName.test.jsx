@@ -2,11 +2,11 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { screen, render } from '@testing-library/react';
-import Title from '..';
+import SiteName from '..';
 
-describe('Title', () => {
+describe('SiteName', () => {
   beforeEach(() => {
-    render(<Title title="Text" />);
+    render(<SiteName title="Text" />);
   });
 
   it('should render an h1 element', () => {

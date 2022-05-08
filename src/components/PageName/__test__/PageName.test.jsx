@@ -2,11 +2,11 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import Subtitle from '..';
+import PageName from '..';
 
-describe('Subtitle', () => {
+describe('PageName', () => {
   beforeEach(() => {
-    render(<Subtitle subtitle="Text" />);
+    render(<PageName title="Text" />);
   });
 
   it('should render an h2 element', () => {

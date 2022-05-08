@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Header from '../../components/Header';
-import Title from '../../components/Title';
-import Container from '../../components/Container';
-import Main from '../../components/Main';
+import Page from '../../components/Page';
 import User from '../../components/User';
-import Footer from '../../components/Footer';
-import Subtitle from '../../components/Subtitle';
+import PageName from '../../components/PageName';
 
-function Home({ title, subtitle }) {
+function Home({ pageName }) {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -32,24 +28,15 @@ function Home({ title, subtitle }) {
   }
 
   return (
-    <Container>
-      <Header>
-        <Title title={title} />
-      </Header>
-      <Main>
-        <Subtitle subtitle={subtitle} />
-        { renderUsers() }
-      </Main>
-      <Footer>
-        <Subtitle subtitle={subtitle} />
-      </Footer>
-    </Container>
+    <Page>
+      <PageName title={pageName} />
+      { renderUsers() }
+    </Page>
   );
 }
 
 Home.propTypes = {
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string.isRequired,
+  pageName: PropTypes.string.isRequired,
 };
 
 export default Home;

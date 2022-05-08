@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
-function Main({ children }) {
+function Page({ children }) {
   return (
     <main>{ children }</main>
   );
 }
 
-export default Main;
+export default Page;

@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Title({ title }) {
+function PageName({ title }) {
   return (
-    <h1>{ title }</h1>
+    <h2>{ title }</h2>
   );
 }
 
-Title.propTypes = {
+PageName.propTypes = {
   title: PropTypes.string.isRequired,
 };
-
-export default Title;
+export default PageName;

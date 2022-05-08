@@ -6,36 +6,12 @@ import UserProfile from '..';
 
 describe('UserProfile', () => {
   beforeEach(() => {
-    render(<UserProfile title="Text" subtitle="Text" />);
-  });
-
-  it('should render the header component', () => {
-    const headerEl = screen.getByTestId('header');
-
-    expect(headerEl).toBeInTheDocument();
-  });
-
-  it('should render the title component', () => {
-    const h1El = screen.getByRole('heading', { level: 1 });
-
-    expect(h1El).toBeInTheDocument();
-  });
-
-  it('should render the main component', () => {
-    const mainEl = screen.getByRole('main');
-
-    expect(mainEl).toBeInTheDocument();
-  });
-
-  it('should render the footer component', () => {
-    const footerEl = screen.getByTestId('footer');
-
-    expect(footerEl).toBeInTheDocument();
+    render(<UserProfile pageName="Page Namee" />);
   });
 
   it('should render the subtitle component', () => {
-    const h2El = screen.getAllByRole('heading', { level: 2 });
+    const namePage = screen.getByText(/page name/i);
 
-    expect(h2El.length).toBe(2);
+    expect(namePage).toBeVisible();
   });
 });
