@@ -1,9 +1,12 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import TodoListStyle from './styled';
 
 function TodoList({ children }) {
   return (
-    <ul>{ children }</ul>
+    <TodoListStyle>
+      { children }
+    </TodoListStyle>
   );
 }
 
