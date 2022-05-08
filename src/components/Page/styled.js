@@ -16,6 +16,85 @@ input {
 button {
     padding: 5px 20px;
 }
+
+@media(max-width: 912px) {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 830px;
+}
+
+@media(max-width: 820px) {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 770px;
+}
+
+@media(max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 700px;
+}
+
+@media(max-width: 540px) {
+    width: 480px;
+}
+
+@media(max-width: 415px) {
+    width: 350px;
+
+    form {
+        width: 350px;
+    }
+
+    input {
+        width: 340px;
+    }
+
+    form > button {
+        margin-top: 10px;
+        width: 100px;
+    }
+}
+
+@media(max-width: 395px) {
+    width: 330px;
+
+    form {
+        width: 320px;
+    }
+
+    input {
+        width: 300px;
+    }
+
+    form > button {
+        margin-top: 10px;
+        width: 100px;
+    }
+}
+
+@media(max-width: 375px) {
+    width: 310px;
+
+    form {
+        width: 310px;
+    }
+
+    input {
+        width: 300px;
+    }
+}
+
+@media(max-width: 280px) {
+    width: 210px;
+}
+
 `;
 
 export default MainStyle;

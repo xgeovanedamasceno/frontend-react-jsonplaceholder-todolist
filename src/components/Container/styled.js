@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 
 const ContainerStyle = styled.div`
-display: flex;
-flex-direction: column;
-flex-wrap: wrap;
-width: 1000px;
+padding: 10px;
 margin: 0 auto;
+width: 900px;
 background-color: f7f7f7;
 
 h1, h2 {
@@ -25,6 +23,15 @@ font-family: monospace;
 
 footer > h2 {
     font-size: 14px;
+}
+
+@media(max-width: 800px) {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100vw;
 }
 `;
 
