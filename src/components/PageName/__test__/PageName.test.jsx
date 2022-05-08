@@ -6,7 +6,7 @@ import PageName from '..';
 
 describe('PageName', () => {
   beforeEach(() => {
-    render(<PageName subtitle="Text" />);
+    render(<PageName title="Text" />);
   });
 
   it('should render an h2 element', () => {

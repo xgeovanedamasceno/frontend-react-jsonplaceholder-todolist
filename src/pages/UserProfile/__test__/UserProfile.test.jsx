@@ -6,7 +6,7 @@ import UserProfile from '..';
 
 describe('UserProfile', () => {
   beforeEach(() => {
-    render(<UserProfile subtitle="Page Namee" />);
+    render(<UserProfile pageName="Page Namee" />);
   });
 
   it('should render the subtitle component', () => {

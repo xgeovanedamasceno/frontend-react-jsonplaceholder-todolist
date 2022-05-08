@@ -6,7 +6,7 @@ import Home from '..';
 
 describe('Home', () => {
   beforeEach(() => {
-    render(<Home subtitle="Name Page" />);
+    render(<Home pageName="Name Page" />);
   });
 
   it('should render the main component', () => {
