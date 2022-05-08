@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Subtitle({ subtitle }) {
+function PageName({ subtitle }) {
   return (
     <h2>{ subtitle }</h2>
   );
 }
 
-Subtitle.propTypes = {
+PageName.propTypes = {
   subtitle: PropTypes.string.isRequired,
 };
 export default Subtitle;
