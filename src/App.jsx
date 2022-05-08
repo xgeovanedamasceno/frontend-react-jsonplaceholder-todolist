@@ -6,33 +6,33 @@ import Home from './pages/Home';
 import UserProfile from './pages/UserProfile';
 import Container from './components/Container';
 import Header from './components/Header';
-import Title from './components/Title';
+import SiteName from './components/SiteName';
 import Footer from './components/Footer';
-import Subtitle from './components/Subtitle';
+import PageName from './components/PageName';
 
 function App() {
   return (
     <BrowserRouter>
       <Container>
         <Header>
-          <Title title="Header Title" />
+          <SiteName title="Header Title" />
         </Header>
         <Routes>
           <Route
             path="/"
             element={
-              <Home subtitle="Users Page" />
+              <Home pageName="Users Page" />
         }
           />
           <Route
             path="/user/:id"
             element={
-              <UserProfile title="Todo User APP" subtitle="User Profile - Todolist" />
+              <UserProfile pageName="User Profile - Todolist" />
           }
           />
         </Routes>
         <Footer>
-          <Subtitle subtitle="Footer Subtitle App" />
+          <PageName title="Footer Subtitle App" />
         </Footer>
       </Container>
     </BrowserRouter>

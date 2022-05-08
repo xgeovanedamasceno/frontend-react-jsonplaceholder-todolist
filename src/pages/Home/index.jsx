@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Page from '../../components/Page';
 import User from '../../components/User';
-import Subtitle from '../../components/Subtitle';
+import PageName from '../../components/PageName';
 
-function Home({ subtitle }) {
+function Home({ pageName }) {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -29,14 +29,14 @@ function Home({ subtitle }) {
 
   return (
     <Page>
-      <Subtitle subtitle={subtitle} />
+      <PageName title={pageName} />
       { renderUsers() }
     </Page>
   );
 }
 
 Home.propTypes = {
-  subtitle: PropTypes.string.isRequired,
+  pageName: PropTypes.string.isRequired,
 };
 
 export default Home;

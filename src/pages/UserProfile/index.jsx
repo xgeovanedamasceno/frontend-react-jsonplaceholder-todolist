@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Page from '../../components/Page';
-import Subtitle from '../../components/Subtitle';
+import PageName from '../../components/PageName';
 import User from '../../components/User';
 import TodoList from '../../components/TodoList';
 
-function UserProfile({ subtitle }) {
+function UserProfile({ pageName }) {
   const [user, setUser] = useState({});
   const [todoList, setTodoList] = useState([]);
   const [todoItem, setTodoItem] = useState('');
@@ -153,7 +153,7 @@ function UserProfile({ subtitle }) {
 
   return (
     <Page>
-      <Subtitle subtitle={subtitle} />
+      <PageName title={pageName} />
       { renderUser() }
       <TodoList>
         { renderInputForm() }
@@ -164,7 +164,7 @@ function UserProfile({ subtitle }) {
 }
 
 UserProfile.propTypes = {
-  subtitle: PropTypes.string.isRequired,
+  pageName: PropTypes.string.isRequired,
 };
 
 export default UserProfile;
