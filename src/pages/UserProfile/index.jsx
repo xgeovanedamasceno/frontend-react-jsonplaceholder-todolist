@@ -5,7 +5,7 @@ import Page from '../../components/Page';
 import PageName from '../../components/PageName';
 import User from '../../components/User';
 import TodoList from '../../components/TodoList';
-import saveOnLocalStorage from '../../util/saveOnLocalStorage';
+import { saveOnLocalStorage, readLocalStorage } from '../../util/dataLocalStorage';
 
 function UserProfile({ pageName }) {
   const [user, setUser] = useState({});
@@ -34,10 +34,6 @@ function UserProfile({ pageName }) {
     fetchUser();
     fetchTodoList();
   }, []);
-
-  function readLocalStorage() {
-    return JSON.parse(localStorage.getItem(user.id));
-  }
 
   function renderUser() {
     return (
@@ -73,7 +69,7 @@ function UserProfile({ pageName }) {
     })
       .then((response) => response.json())
       .then((json) => {
-        const listStoraged = readLocalStorage();
+        const listStoraged = readLocalStorage(user.id);
         listStoraged.unshift(json);
         setTodoList(listStoraged);
         saveOnLocalStorage(listStoraged);
@@ -81,12 +77,13 @@ function UserProfile({ pageName }) {
       });
   }
 
-  function getIdTodoItem(itemID) {
-    const listStoraged = readLocalStorage();
+  function getIdTodoItem(itemTodo) {
+    const { userId, id } = itemTodo;
+    const listStoraged = readLocalStorage(userId);
     let indexItem;
 
-    listStoraged.forEach((itemTask, index) => {
-      if (itemTask.id === itemID) {
+    listStoraged.forEach((itemStorage, index) => {
+      if (itemStorage.id === id) {
         indexItem = index;
       }
       return null;
@@ -96,8 +93,8 @@ function UserProfile({ pageName }) {
 
   useEffect(() => {
     if (updatedItem) {
-      const indexTodoItem = getIdTodoItem(updatedItem.id);
-      const listStoraged = readLocalStorage();
+      const indexTodoItem = getIdTodoItem(updatedItem);
+      const listStoraged = readLocalStorage(updatedItem.userId);
       listStoraged[indexTodoItem] = updatedItem;
       setTodoList(listStoraged);
       saveOnLocalStorage(listStoraged);
