@@ -12,19 +12,21 @@ On your computer:
 
 ##### - clone this repository:
 
-  - git clone git@github.com:xgeovanedamasceno/frontend-react-jsonplaceholder-todolist.git
+- git clone git@github.com:xgeovanedamasceno/frontend-react-jsonplaceholder-todolist.git
 
 ##### - go the directory of the repository and install the dependecies
 
-  - npm install
+- npm install
 
 ##### - run the application:
-  - npm start
+
+- npm start
 
 #### Dependencies Libraries:
-  - prop-types
-  - styled-components
-  - react-router-dom
+
+- prop-types
+- styled-components
+- react-router-dom
 
 ### Development Steps
 
@@ -259,6 +261,31 @@ console.error
     Warning: Failed prop type: Invalid prop `children[1]` of type `array` supplied to `Main`, expected a single ReactElement.
         at Main (/home/xgeo/Desktop/dev-projects/frontend-react-jsonplaceholder-todolist/src/components/Main/index.jsx:4:17)
         at Home (/home/xgeo/Desktop/dev-projects/frontend-react-jsonplaceholder-todolist/src/pages/Home/index.jsx:11:17)
+```
+
+##### 3.
+
+```
+Warning: A component is changing a controlled input to be uncontrolled. This is likely caused by the value changing from a defined to undefined, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://reactjs.org/link/controlled-components
+```
+
+This is caused when the state is removed from the input as comment code below:
+
+```
+  function renderInputForm() {
+    return (
+      <form>
+        <input
+          type="text"
+          /* value={todoItem}
+          onChange={(event) => setTodoItem(event.target.value)} */
+          placeholder="Add new task here"
+        />
+        <button onClick={addTodoItem} type="button">ADD</button>
+      </form>
+    );
+  }
+
 ```
 
 ##### How was fixed?
