@@ -11,6 +11,7 @@ function UserProfile({ pageName }) {
   const [user, setUser] = useState({});
   const [todoList, setTodoList] = useState([]);
   const [todoItem, setTodoItem] = useState('');
+  const [updatedItem, setUpdatedItem] = useState('');
 
   const params = useParams();
 
@@ -94,8 +95,8 @@ function UserProfile({ pageName }) {
   }
 
   function updateStatusTodoItem(itemId, status) {
-    const listStoraged = readLocalStorage();
     const indexTodoItem = getIdTodoItem(itemId);
+    const listStoraged = readLocalStorage();
 
     fetch(`https://jsonplaceholder.typicode.com/todos/${itemId}`, {
       method: 'PATCH',
@@ -107,22 +108,16 @@ function UserProfile({ pageName }) {
       },
     })
       .then((response) => response.json())
-      .then((data) => (data));
-
-    const itemTodoTask = listStoraged.at(indexTodoItem);
-    const taskItem = {
-      userId: itemTodoTask.userId,
-      id: itemTodoTask.id,
-      title: itemTodoTask.title,
-      completed: status,
-    };
-    listStoraged[indexTodoItem] = taskItem;
-    setTodoList(listStoraged);
-    saveOnLocalStorage(listStoraged);
+      .then((data) => {
+        setUpdatedItem(data);
+        listStoraged[indexTodoItem] = updatedItem;
+        setTodoList(listStoraged);
+        saveOnLocalStorage(listStoraged);
+      });
   }
 
   function finishTask(event) {
-    const itemId = +event.target.id;
+    const itemId = +event.target.name;
     updateStatusTodoItem(itemId, true);
   }
 
