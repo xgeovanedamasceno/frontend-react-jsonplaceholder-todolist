@@ -12,6 +12,7 @@ function UserProfile({ pageName }) {
   const [todoList, setTodoList] = useState([]);
   const [todoItem, setTodoItem] = useState('');
   const [updatedItem, setUpdatedItem] = useState('');
+  const [statusItem, setStatusItem] = useState(null);
 
   const params = useParams();
 
@@ -42,17 +43,6 @@ function UserProfile({ pageName }) {
         <p>{user?.email}</p>
       </User>
     );
-  }
-
-  function renderStatusItemTodo(status) {
-    switch (status) {
-      case true:
-        return 'completed';
-      case 'pending':
-        return status;
-      default:
-        return 'incomplet';
-    }
   }
 
   function addTodoItem() {
@@ -98,10 +88,12 @@ function UserProfile({ pageName }) {
       listStoraged[indexTodoItem] = updatedItem;
       setTodoList(listStoraged);
       saveOnLocalStorage(listStoraged);
+      setStatusItem(updatedItem.completed);
     }
   }, [updatedItem]);
 
   function updateStatusTodoItem(itemId, status) {
+    console.log(status);
     fetch(`https://jsonplaceholder.typicode.com/todos/${itemId}`, {
       method: 'PATCH',
       body: JSON.stringify({
@@ -124,7 +116,7 @@ function UserProfile({ pageName }) {
 
   function pendingTask(event) {
     const itemId = +event.target.id;
-    updateStatusTodoItem(itemId, 'pending');
+    updateStatusTodoItem(itemId, false);
   }
 
   function renderInputForm() {
@@ -152,7 +144,7 @@ function UserProfile({ pageName }) {
             <p>
               status:
               {' '}
-              {renderStatusItemTodo(itemList.completed)}
+              {statusItem ? `${itemList.completed}` : `${itemList.completed}`}
             </p>
           </section>
           <section id="buttons-sec">
