@@ -94,10 +94,17 @@ function UserProfile({ pageName }) {
     return indexItem;
   }
 
-  function updateStatusTodoItem(itemId, status) {
-    const indexTodoItem = getIdTodoItem(itemId);
-    const listStoraged = readLocalStorage();
+  useEffect(() => {
+    if (updatedItem) {
+      const indexTodoItem = getIdTodoItem(updatedItem.id);
+      const listStoraged = readLocalStorage();
+      listStoraged[indexTodoItem] = updatedItem;
+      setTodoList(listStoraged);
+      saveOnLocalStorage(listStoraged);
+    }
+  }, [updatedItem]);
 
+  function updateStatusTodoItem(itemId, status) {
     fetch(`https://jsonplaceholder.typicode.com/todos/${itemId}`, {
       method: 'PATCH',
       body: JSON.stringify({
@@ -110,9 +117,6 @@ function UserProfile({ pageName }) {
       .then((response) => response.json())
       .then((data) => {
         setUpdatedItem(data);
-        listStoraged[indexTodoItem] = updatedItem;
-        setTodoList(listStoraged);
-        saveOnLocalStorage(listStoraged);
       });
   }
 
