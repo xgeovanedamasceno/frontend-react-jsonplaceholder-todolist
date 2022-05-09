@@ -1,6 +1,6 @@
 # Todo List React App
 
-A React Application that consumes the Json Placeholder API and allow to add and update items.
+This project was initialized with Create React App and uses **styled-component** to style pages and components, **prop-types** for property type checking and **react router dom** to route the application. Also, **eslint rules** are applied for improvement of code style and some **unit tests** are applied.
 
 ### Requirements
 
@@ -10,16 +10,21 @@ A React Application that consumes the Json Placeholder API and allow to add and 
 
 On your computer:
 
-- clone this repository:
+##### - clone this repository:
 
   - git clone git@github.com:xgeovanedamasceno/frontend-react-jsonplaceholder-todolist.git
 
-- go the directory of the repository and install the dependecies
+##### - go the directory of the repository and install the dependecies
 
   - npm install
 
-- run the application:
+##### - run the application:
   - npm start
+
+#### Dependencies Libraries:
+  - prop-types
+  - styled-components
+  - react-router-dom
 
 ### Development Steps
 
