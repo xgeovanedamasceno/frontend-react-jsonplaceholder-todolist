@@ -93,7 +93,6 @@ function UserProfile({ pageName }) {
   }, [updatedItem]);
 
   function updateStatusTodoItem(itemId, status) {
-    console.log(status);
     fetch(`https://jsonplaceholder.typicode.com/todos/${itemId}`, {
       method: 'PATCH',
       body: JSON.stringify({
@@ -115,7 +114,7 @@ function UserProfile({ pageName }) {
   }
 
   function pendingTask(event) {
-    const itemId = +event.target.id;
+    const itemId = +event.target.name;
     updateStatusTodoItem(itemId, false);
   }
 
