@@ -106,6 +106,19 @@ function UserProfile({ pageName }) {
   function updateStatusTodoItem(itemId, status) {
     const listStoraged = readLocalStorage();
     const indexTodoItem = getIdTodoItem(itemId);
+
+    fetch(`https://jsonplaceholder.typicode.com/todos/${itemId}`, {
+      method: 'PATCH',
+      body: JSON.stringify({
+        completed: status,
+      }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => (data));
+
     const itemTodoTask = listStoraged.at(indexTodoItem);
     const taskItem = {
       userId: itemTodoTask.userId,
