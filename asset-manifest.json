@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/frontend-react-jsonplaceholder-todolist/static/css/main.c8d8f8cd.css",
-    "main.js": "/frontend-react-jsonplaceholder-todolist/static/js/main.88028b30.js",
+    "main.css": "/frontend-react-jsonplaceholder-todolist/static/css/main.894f58e2.css",
+    "main.js": "/frontend-react-jsonplaceholder-todolist/static/js/main.503b8296.js",
     "static/js/787.dff83cce.chunk.js": "/frontend-react-jsonplaceholder-todolist/static/js/787.dff83cce.chunk.js",
     "index.html": "/frontend-react-jsonplaceholder-todolist/index.html",
-    "main.c8d8f8cd.css.map": "/frontend-react-jsonplaceholder-todolist/static/css/main.c8d8f8cd.css.map",
-    "main.88028b30.js.map": "/frontend-react-jsonplaceholder-todolist/static/js/main.88028b30.js.map",
+    "main.894f58e2.css.map": "/frontend-react-jsonplaceholder-todolist/static/css/main.894f58e2.css.map",
+    "main.503b8296.js.map": "/frontend-react-jsonplaceholder-todolist/static/js/main.503b8296.js.map",
     "787.dff83cce.chunk.js.map": "/frontend-react-jsonplaceholder-todolist/static/js/787.dff83cce.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c8d8f8cd.css",
-    "static/js/main.88028b30.js"
+    "static/css/main.894f58e2.css",
+    "static/js/main.503b8296.js"
   ]
 }
