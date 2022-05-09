@@ -1,4 +1,27 @@
-## Development steps
+# Todo List React App
+
+A React Application that consumes the Json Placeholder API and allow to add and update items.
+
+### Requirements
+
+- Node and NPM
+
+### How to Install
+
+On your computer:
+
+- clone this repository:
+
+  - git clone git@github.com:xgeovanedamasceno/frontend-react-jsonplaceholder-todolist.git
+
+- go the directory of the repository and install the dependecies
+
+  - npm install
+
+- run the application:
+  - npm start
+
+### Development Steps
 
 1. Think and Plan
 2. Create prototype
@@ -29,19 +52,11 @@
 6. Style and Design
 7. Deploy
 
-## Notes
+#### ESLint Rules
 
-- How to reset or unstage on git?
-  - git reset
-  - git reset HEAD~1 hard
-
-## ESLint Rules
-
-### 1. A control must be associated with a text label.
-
-### 2. 'React' must be in scope when using JSX
-
-### 3. JSX not allowed in files with extension '.js'
+1. A control must be associated with a text label.
+2. 'React' must be in scope when using JSX
+3. JSX not allowed in files with extension '.js'
 
 before (rules 1, 2 and 3):
 
@@ -69,7 +84,7 @@ function Button() {
 export default Button;
 ```
 
-### 4. Headings must have content and the content must be accessible by a screen reader.
+4. Headings must have content and the content must be accessible by a screen reader.
 
 before:
 
@@ -100,9 +115,8 @@ function Subtitle() {
 export default Subtitle;
 ```
 
-### 5. Expected parentheses around arrow function argument.
-
-### 6. Expected a line break after this opening brace.
+5. Expected parentheses around arrow function argument.
+6. Expected a line break after this opening brace.
 
 before (rules 5 and 6):
 
@@ -142,13 +156,12 @@ const reportWebVitals = (onPerfEntry) => {
 export default reportWebVitals;
 ```
 
-### 7. 'children' is missing in props validation
-
-### 8. 'title' is missing in props validation
-
-### 9. propType "title" is not required, but has no corresponding defaultProps declaration.
+7. 'children' is missing in props validation
+8. 'title' is missing in props validation
+9. propType "title" is not required, but has no corresponding defaultProps declaration.
 
 before:
+
 ```
 import React from 'react';
 
@@ -164,6 +177,7 @@ export default Home;
 ```
 
 after:
+
 ```
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -185,15 +199,10 @@ Home.propTypes = {
 export default Home;
 ```
 
-### Libraries used
+### errors and doubts:
 
-- eslint
-- prop-types
-- react-router-dom@6
+##### 1.
 
-### errors:
-
-#### 1.
 ```
  console.error
     Warning: Failed prop type: Invalid prop `children` of type `array` supplied to `Container`, expected a single ReactElement.
@@ -201,7 +210,7 @@ export default Home;
         at Home (/home/xgeo/Desktop/dev-projects/frontend-react-jsonplaceholder-todolist/src/pages/Home/index.jsx:9:17)
 ```
 
-  ##### How was fixed:
+##### How was fixed:
 
     before:
     ```
@@ -237,7 +246,9 @@ export default Home;
     };
     export default Container;
     ```
-#### 2.
+
+##### 2.
+
 ```
 console.error
     Warning: Failed prop type: Invalid prop `children[1]` of type `array` supplied to `Main`, expected a single ReactElement.
@@ -245,7 +256,8 @@ console.error
         at Home (/home/xgeo/Desktop/dev-projects/frontend-react-jsonplaceholder-todolist/src/pages/Home/index.jsx:11:17)
 ```
 
-   ##### How was fixed?
+##### How was fixed?
+
       ##### -> wasn't...
       ```
       /* eslint-disable react/prop-types */
@@ -260,24 +272,18 @@ console.error
       export default Main;
       ```
 
+##### Notes
 
-### Doubts
+- How to reset or unstage on git?
+  - git reset
+  - git reset HEAD~1 hard
+
+##### Doubts
 
 - jest vs testing-library
 - fix or refactor
 - how to mock a component for tests
 - how to mock a custom hook for tests
-
-
-
-
-
-
-
-
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
@@ -315,34 +321,3 @@ If you aren't satisfied with the build tool and configuration choices, you can `
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-````
