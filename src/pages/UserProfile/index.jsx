@@ -5,6 +5,7 @@ import Page from '../../components/Page';
 import PageName from '../../components/PageName';
 import User from '../../components/User';
 import TodoList from '../../components/TodoList';
+import saveOnLocalStorage from '../../util/saveOnLocalStorage';
 
 function UserProfile({ pageName }) {
   const [user, setUser] = useState({});
@@ -17,10 +18,6 @@ function UserProfile({ pageName }) {
     fetch(`https://jsonplaceholder.typicode.com/users/${params.id}`)
       .then((response) => response.json())
       .then((data) => setUser(data));
-  }
-
-  function saveOnLocalStorage(data) {
-    if (data[0] !== undefined) localStorage.setItem(data[0]?.userId, JSON.stringify(data));
   }
 
   function fetchTodoList() {
