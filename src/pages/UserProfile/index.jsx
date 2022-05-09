@@ -67,16 +67,27 @@ function UserProfile({ pageName }) {
 
   function addTodoItem() {
     const listStoraged = readLocalStorage();
-    const lastId = listStoraged.at(-1);
-    const taskItem = {
-      userId: user.id,
-      id: lastId.id + 1,
-      title: todoItem,
-      completed: false,
-    };
-    listStoraged.unshift(taskItem);
+
     setTodoList(listStoraged);
     saveOnLocalStorage(listStoraged);
+
+    fetch('https://jsonplaceholder.typicode.com/todos', {
+      method: 'POST',
+      body: JSON.stringify({
+        userId: user.id,
+        title: todoItem,
+        completed: false,
+      }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => listStoraged.unshift(json));
+
+    setTodoList(listStoraged);
+    saveOnLocalStorage(listStoraged);
+    setTodoItem('');
   }
 
   function getIdTodoItem(itemID) {
