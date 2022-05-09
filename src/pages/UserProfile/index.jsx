@@ -19,6 +19,17 @@ function UserProfile({ pageName }) {
       .then((data) => setUser(data));
   }
 
+  function fetchTodoList() {
+    fetch(`https://jsonplaceholder.typicode.com/todos?userId=${params.id}`)
+      .then((response) => response.json())
+      .then((data) => setTodoList(data));
+  }
+
+  useEffect(() => {
+    fetchUser();
+    fetchTodoList();
+  }, []);
+
   function saveOnLocalStorage(data) {
     if (data[0] !== undefined) localStorage.setItem(data[0]?.userId, JSON.stringify(data));
   }
@@ -26,24 +37,6 @@ function UserProfile({ pageName }) {
   function readLocalStorage() {
     return JSON.parse(localStorage.getItem(user.id));
   }
-
-  function reduceTodoSize(data) {
-    const reducedTodoList = data.slice(0, 5);
-    setTodoList(reducedTodoList);
-    saveOnLocalStorage(reducedTodoList);
-  }
-
-  function fetchTodoList() {
-    fetch(`https://jsonplaceholder.typicode.com/todos?userId=${params.id}`)
-      .then((response) => response.json())
-      .then((data) => reduceTodoSize(data));
-  }
-
-  useEffect(() => {
-    fetchUser();
-    fetchTodoList();
-    setTodoList(reduceTodoSize);
-  }, []);
 
   function renderUser() {
     return (
