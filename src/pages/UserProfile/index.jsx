@@ -19,20 +19,23 @@ function UserProfile({ pageName }) {
       .then((data) => setUser(data));
   }
 
+  function saveOnLocalStorage(data) {
+    if (data[0] !== undefined) localStorage.setItem(data[0]?.userId, JSON.stringify(data));
+  }
+
   function fetchTodoList() {
     fetch(`https://jsonplaceholder.typicode.com/todos?userId=${params.id}`)
       .then((response) => response.json())
-      .then((data) => setTodoList(data));
+      .then((data) => {
+        setTodoList(data);
+        saveOnLocalStorage(data);
+      });
   }
 
   useEffect(() => {
     fetchUser();
     fetchTodoList();
   }, []);
-
-  function saveOnLocalStorage(data) {
-    if (data[0] !== undefined) localStorage.setItem(data[0]?.userId, JSON.stringify(data));
-  }
 
   function readLocalStorage() {
     return JSON.parse(localStorage.getItem(user.id));
