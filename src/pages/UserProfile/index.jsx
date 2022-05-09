@@ -160,8 +160,8 @@ function UserProfile({ pageName }) {
             </p>
           </section>
           <section id="buttons-sec">
-            <button type="button" onClick={pendingTask} id={itemList.id}>Mark as Pending</button>
-            <button type="button" onClick={finishTask} id={itemList.id}>Finish Task</button>
+            <button type="button" onClick={pendingTask} name={itemList.id}>Mark as Pending</button>
+            <button type="button" onClick={finishTask} name={itemList.id}>Finish Task</button>
           </section>
         </li>
       ))
