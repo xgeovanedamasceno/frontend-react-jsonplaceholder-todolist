@@ -269,7 +269,7 @@ console.error
 Warning: A component is changing a controlled input to be uncontrolled. This is likely caused by the value changing from a defined to undefined, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://reactjs.org/link/controlled-components
 ```
 
-This is caused when the state is removed from the input as comment code below:
+- This is caused when the state is removed from the input as comment code below:
 
 ```
   function renderInputForm() {
@@ -288,9 +288,72 @@ This is caused when the state is removed from the input as comment code below:
 
 ```
 
+- **The problem is the todoList is update only I type again at the input field which is wrong because the todolist must be update after I click on the button 'add'**
+
+  - ##### How it was solved?
+
+    - the function state and the functions that deal with the listStored were moved to
+      promise function. Code below:
+
+    before (similar to):
+
+    ```
+    function addTodoItem() {
+      fetch('https://jsonplaceholder.typicode.com/todos', {
+        method: 'POST',
+        body: JSON.stringify({
+          userId: user.id,
+          title: todoItem,
+          completed: false,
+        }),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          setTodoList(listStoraged);
+      });
+
+      const listStoraged = readLocalStorage();
+      listStoraged.unshift(json);
+      saveOnLocalStorage(listStoraged);
+      setTodoItem('');
+    }
+
+
+    after (aparentely solved the problem):
+    ```
+
+    function addTodoItem() {
+    fetch('https://jsonplaceholder.typicode.com/todos', {
+    method: 'POST',
+    body: JSON.stringify({
+    userId: user.id,
+    title: todoItem,
+    completed: false,
+    }),
+    headers: {
+    'Content-type': 'application/json; charset=UTF-8',
+    },
+    })
+    .then((response) => response.json())
+    .then((json) => {
+    const listStoraged = readLocalStorage();
+    listStoraged.unshift(json);
+    setTodoList(listStoraged);
+    saveOnLocalStorage(listStoraged);
+    setTodoItem('');
+    });
+    }
+
+  ```
+
+  ```
+
 ##### How was fixed?
 
-      ##### -> wasn't...
+      ##### wasn't...
       ```
       /* eslint-disable react/prop-types */
       import React from 'react';
