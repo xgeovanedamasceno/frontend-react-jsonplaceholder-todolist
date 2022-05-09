@@ -59,11 +59,6 @@ function UserProfile({ pageName }) {
   }
 
   function addTodoItem() {
-    const listStoraged = readLocalStorage();
-
-    setTodoList(listStoraged);
-    saveOnLocalStorage(listStoraged);
-
     fetch('https://jsonplaceholder.typicode.com/todos', {
       method: 'POST',
       body: JSON.stringify({
@@ -76,11 +71,13 @@ function UserProfile({ pageName }) {
       },
     })
       .then((response) => response.json())
-      .then((json) => listStoraged.unshift(json));
-
-    setTodoList(listStoraged);
-    saveOnLocalStorage(listStoraged);
-    setTodoItem('');
+      .then((json) => {
+        const listStoraged = readLocalStorage();
+        listStoraged.unshift(json);
+        setTodoList(listStoraged);
+        saveOnLocalStorage(listStoraged);
+        setTodoItem('');
+      });
   }
 
   function getIdTodoItem(itemID) {
@@ -139,9 +136,9 @@ function UserProfile({ pageName }) {
       <form>
         <input
           type="text"
-          placeholder="Add new task here"
           value={todoItem}
           onChange={(event) => setTodoItem(event.target.value)}
+          placeholder="Add new task here"
         />
         <button onClick={addTodoItem} type="button">ADD</button>
       </form>
