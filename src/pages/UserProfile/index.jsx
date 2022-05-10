@@ -6,6 +6,7 @@ import PageName from '../../components/PageName';
 import User from '../../components/User';
 import TodoList from '../../components/TodoList';
 import { saveOnLocalStorage, readLocalStorage } from '../../util/dataLocalStorage';
+import getIndexItemTodo from '../../util/getIndexItemTodo';
 
 function UserProfile({ pageName }) {
   const [user, setUser] = useState({});
@@ -67,23 +68,9 @@ function UserProfile({ pageName }) {
       });
   }
 
-  function getIdTodoItem(itemTodo) {
-    const { userId, id } = itemTodo;
-    const listStoraged = readLocalStorage(userId);
-    let indexItem;
-
-    listStoraged.forEach((itemStorage, index) => {
-      if (itemStorage.id === id) {
-        indexItem = index;
-      }
-      return null;
-    });
-    return indexItem;
-  }
-
   useEffect(() => {
     if (updatedItem) {
-      const indexTodoItem = getIdTodoItem(updatedItem);
+      const indexTodoItem = getIndexItemTodo(updatedItem);
       const listStoraged = readLocalStorage(updatedItem.userId);
       listStoraged[indexTodoItem] = updatedItem;
       setTodoList(listStoraged);
@@ -112,7 +99,7 @@ function UserProfile({ pageName }) {
         userId: user.id,
         id: itemId,
       };
-      const indexTodoItem = getIdTodoItem(dataItemUpdated);
+      const indexTodoItem = getIndexItemTodo(dataItemUpdated);
       const listStoraged = readLocalStorage(user.id);
       const itemFromListStored = listStoraged.at(indexTodoItem);
       const itemLocal = {
