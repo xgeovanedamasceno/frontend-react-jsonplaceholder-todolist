@@ -5,11 +5,15 @@ import Page from '../../components/Page';
 import PageName from '../../components/PageName';
 import User from '../../components/User';
 import TodoList from '../../components/TodoList';
+import { saveOnLocalStorage, readLocalStorage } from '../../util/dataLocalStorage';
+import getIndexItemTodo from '../../util/getIndexItemTodo';
 
 function UserProfile({ pageName }) {
   const [user, setUser] = useState({});
   const [todoList, setTodoList] = useState([]);
   const [todoItem, setTodoItem] = useState('');
+  const [updatedItem, setUpdatedItem] = useState('');
+  const [statusItem, setStatusItem] = useState(null);
 
   const params = useParams();
 
@@ -19,30 +23,18 @@ function UserProfile({ pageName }) {
       .then((data) => setUser(data));
   }
 
-  function saveOnLocalStorage(data) {
-    if (data[0] !== undefined) localStorage.setItem(data[0]?.userId, JSON.stringify(data));
-  }
-
-  function readLocalStorage() {
-    return JSON.parse(localStorage.getItem(user.id));
-  }
-
-  function reduceTodoSize(data) {
-    const reducedTodoList = data.slice(0, 5);
-    setTodoList(reducedTodoList);
-    saveOnLocalStorage(reducedTodoList);
-  }
-
   function fetchTodoList() {
     fetch(`https://jsonplaceholder.typicode.com/todos?userId=${params.id}`)
       .then((response) => response.json())
-      .then((data) => reduceTodoSize(data));
+      .then((data) => {
+        setTodoList(data);
+        saveOnLocalStorage(data);
+      });
   }
 
   useEffect(() => {
     fetchUser();
     fetchTodoList();
-    setTodoList(reduceTodoSize);
   }, []);
 
   function renderUser() {
@@ -54,23 +46,7 @@ function UserProfile({ pageName }) {
     );
   }
 
-  function renderStatusItemTodo(status) {
-    switch (status) {
-      case true:
-        return 'completed';
-      case 'pending':
-        return status;
-      default:
-        return 'incomplet';
-    }
-  }
-
   function addTodoItem() {
-    const listStoraged = readLocalStorage();
-
-    setTodoList(listStoraged);
-    saveOnLocalStorage(listStoraged);
-
     fetch('https://jsonplaceholder.typicode.com/todos', {
       method: 'POST',
       body: JSON.stringify({
@@ -83,62 +59,67 @@ function UserProfile({ pageName }) {
       },
     })
       .then((response) => response.json())
-      .then((json) => listStoraged.unshift(json));
-
-    setTodoList(listStoraged);
-    saveOnLocalStorage(listStoraged);
-    setTodoItem('');
+      .then((json) => {
+        const listStoraged = readLocalStorage(user.id);
+        listStoraged.unshift(json);
+        setTodoList(listStoraged);
+        saveOnLocalStorage(listStoraged);
+        setTodoItem('');
+      });
   }
 
-  function getIdTodoItem(itemID) {
-    const listStoraged = readLocalStorage();
-    let indexItem;
-
-    listStoraged.forEach((itemTask, index) => {
-      if (itemTask.id === itemID) {
-        indexItem = index;
-      }
-      return null;
-    });
-    return indexItem;
-  }
+  useEffect(() => {
+    if (updatedItem) {
+      const indexTodoItem = getIndexItemTodo(updatedItem);
+      const listStoraged = readLocalStorage(updatedItem.userId);
+      listStoraged[indexTodoItem] = updatedItem;
+      setTodoList(listStoraged);
+      saveOnLocalStorage(listStoraged);
+      setStatusItem(updatedItem.completed);
+    }
+  }, [updatedItem]);
 
   function updateStatusTodoItem(itemId, status) {
-    const listStoraged = readLocalStorage();
-    const indexTodoItem = getIdTodoItem(itemId);
-
-    fetch(`https://jsonplaceholder.typicode.com/todos/${itemId}`, {
-      method: 'PATCH',
-      body: JSON.stringify({
+    if (itemId !== 201) {
+      fetch(`https://jsonplaceholder.typicode.com/todos/${itemId}`, {
+        method: 'PATCH',
+        body: JSON.stringify({
+          completed: status,
+        }),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setUpdatedItem(data);
+        });
+    } else {
+      const dataItemUpdated = {
+        userId: user.id,
+        id: itemId,
+      };
+      const indexTodoItem = getIndexItemTodo(dataItemUpdated);
+      const listStoraged = readLocalStorage(user.id);
+      const itemFromListStored = listStoraged.at(indexTodoItem);
+      const itemLocal = {
+        userId: user.id,
+        id: itemId,
+        title: itemFromListStored.title,
         completed: status,
-      }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => (data));
-
-    const itemTodoTask = listStoraged.at(indexTodoItem);
-    const taskItem = {
-      userId: itemTodoTask.userId,
-      id: itemTodoTask.id,
-      title: itemTodoTask.title,
-      completed: status,
-    };
-    listStoraged[indexTodoItem] = taskItem;
-    setTodoList(listStoraged);
-    saveOnLocalStorage(listStoraged);
+      };
+      setUpdatedItem(itemLocal);
+    }
   }
 
   function finishTask(event) {
-    const itemId = +event.target.id;
+    const itemId = +event.target.name;
     updateStatusTodoItem(itemId, true);
   }
 
   function pendingTask(event) {
-    const itemId = +event.target.id;
-    updateStatusTodoItem(itemId, 'pending');
+    const itemId = +event.target.name;
+    updateStatusTodoItem(itemId, false);
   }
 
   function renderInputForm() {
@@ -146,9 +127,9 @@ function UserProfile({ pageName }) {
       <form>
         <input
           type="text"
-          placeholder="Add new task here"
           value={todoItem}
           onChange={(event) => setTodoItem(event.target.value)}
+          placeholder="Add new task here"
         />
         <button onClick={addTodoItem} type="button">ADD</button>
       </form>
@@ -166,12 +147,12 @@ function UserProfile({ pageName }) {
             <p>
               status:
               {' '}
-              {renderStatusItemTodo(itemList.completed)}
+              {statusItem ? `${itemList.completed}` : `${itemList.completed}`}
             </p>
           </section>
           <section id="buttons-sec">
-            <button type="button" onClick={pendingTask} id={itemList.id}>Mark as Pending</button>
-            <button type="button" onClick={finishTask} id={itemList.id}>Finish Task</button>
+            <button type="button" onClick={pendingTask} name={itemList.id}>Mark as Pending</button>
+            <button type="button" onClick={finishTask} name={itemList.id}>Finish Task</button>
           </section>
         </li>
       ))

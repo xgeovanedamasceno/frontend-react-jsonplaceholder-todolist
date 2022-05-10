@@ -12,19 +12,21 @@ On your computer:
 
 ##### - clone this repository:
 
-  - git clone git@github.com:xgeovanedamasceno/frontend-react-jsonplaceholder-todolist.git
+- git clone git@github.com:xgeovanedamasceno/frontend-react-jsonplaceholder-todolist.git
 
 ##### - go the directory of the repository and install the dependecies
 
-  - npm install
+- npm install
 
 ##### - run the application:
-  - npm start
+
+- npm start
 
 #### Dependencies Libraries:
-  - prop-types
-  - styled-components
-  - react-router-dom
+
+- prop-types
+- styled-components
+- react-router-dom
 
 ### Development Steps
 
@@ -261,9 +263,97 @@ console.error
         at Home (/home/xgeo/Desktop/dev-projects/frontend-react-jsonplaceholder-todolist/src/pages/Home/index.jsx:11:17)
 ```
 
+##### 3.
+
+```
+Warning: A component is changing a controlled input to be uncontrolled. This is likely caused by the value changing from a defined to undefined, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://reactjs.org/link/controlled-components
+```
+
+- This is caused when the state is removed from the input as comment code below:
+
+```
+  function renderInputForm() {
+    return (
+      <form>
+        <input
+          type="text"
+          /* value={todoItem}
+          onChange={(event) => setTodoItem(event.target.value)} */
+          placeholder="Add new task here"
+        />
+        <button onClick={addTodoItem} type="button">ADD</button>
+      </form>
+    );
+  }
+
+```
+
+- **The problem is the todoList is update only I type again at the input field which is wrong because the todolist must be update after I click on the button 'add'**
+
+  - ##### How it was solved?
+
+    - the function state and the functions that deal with the listStored were moved to
+      promise function. Code below:
+
+    before (similar to):
+
+    ```
+    function addTodoItem() {
+      fetch('https://jsonplaceholder.typicode.com/todos', {
+        method: 'POST',
+        body: JSON.stringify({
+          userId: user.id,
+          title: todoItem,
+          completed: false,
+        }),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          setTodoList(listStoraged);
+      });
+
+      const listStoraged = readLocalStorage();
+      listStoraged.unshift(json);
+      saveOnLocalStorage(listStoraged);
+      setTodoItem('');
+    }
+
+
+    after (aparentely solved the problem):
+    ```
+
+    function addTodoItem() {
+    fetch('https://jsonplaceholder.typicode.com/todos', {
+    method: 'POST',
+    body: JSON.stringify({
+    userId: user.id,
+    title: todoItem,
+    completed: false,
+    }),
+    headers: {
+    'Content-type': 'application/json; charset=UTF-8',
+    },
+    })
+    .then((response) => response.json())
+    .then((json) => {
+    const listStoraged = readLocalStorage();
+    listStoraged.unshift(json);
+    setTodoList(listStoraged);
+    saveOnLocalStorage(listStoraged);
+    setTodoItem('');
+    });
+    }
+
+  ```
+
+  ```
+
 ##### How was fixed?
 
-      ##### -> wasn't...
+      ##### wasn't...
       ```
       /* eslint-disable react/prop-types */
       import React from 'react';
