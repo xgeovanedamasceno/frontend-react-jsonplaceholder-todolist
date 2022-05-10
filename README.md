@@ -2,6 +2,8 @@
 
 This project was initialized with Create React App and uses **styled-component** to style pages and components, **prop-types** for property type checking and **react router dom** to route the application. Also, **eslint rules** are applied for improvement of code style and some **unit tests** are applied.
 
+Check out the application deployed at https://xgeovanedamasceno.github.io/frontend-react-jsonplaceholder-todolist/.
+
 ### Requirements
 
 - Node and NPM
