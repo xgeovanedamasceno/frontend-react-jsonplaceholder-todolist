@@ -93,19 +93,36 @@ function UserProfile({ pageName }) {
   }, [updatedItem]);
 
   function updateStatusTodoItem(itemId, status) {
-    fetch(`https://jsonplaceholder.typicode.com/todos/${itemId}`, {
-      method: 'PATCH',
-      body: JSON.stringify({
+    if (itemId !== 201) {
+      fetch(`https://jsonplaceholder.typicode.com/todos/${itemId}`, {
+        method: 'PATCH',
+        body: JSON.stringify({
+          completed: status,
+        }),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setUpdatedItem(data);
+        });
+    } else {
+      const dataItemUpdated = {
+        userId: user.id,
+        id: itemId,
+      };
+      const indexTodoItem = getIdTodoItem(dataItemUpdated);
+      const listStoraged = readLocalStorage(user.id);
+      const itemFromListStored = listStoraged.at(indexTodoItem);
+      const itemLocal = {
+        userId: user.id,
+        id: itemId,
+        title: itemFromListStored.title,
         completed: status,
-      }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setUpdatedItem(data);
-      });
+      };
+      setUpdatedItem(itemLocal);
+    }
   }
 
   function finishTask(event) {
